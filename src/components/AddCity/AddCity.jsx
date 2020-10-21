@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Wrap } from "./addCity.style";
+import { connect } from "react-redux";
+import { addCity } from "../../redux/action/action";
 
-const AddCity = (props) => {
+const AddCity = ({ addCity }) => {
   const [value, setValue] = useState("");
 
-  const addCity = (event) => {
+  const enterCity = (event) => {
     event.preventDefault();
-    
+    addCity({
+      city: value,
+    });
+    setValue("");
   };
 
   return (
@@ -19,9 +24,13 @@ const AddCity = (props) => {
         type="text"
         onChange={(event) => setValue(event.target.value)}
       />
-      <button onClick={addCity}>Добавить</button>
+      <button onClick={enterCity}>Добавить</button>
     </Wrap>
   );
 };
 
-export default AddCity;
+const mapStateToProps = (state) => ({
+  cities: state.cities,
+});
+
+export default connect(mapStateToProps, { addCity })(AddCity);

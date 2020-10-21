@@ -4,18 +4,22 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { createStore, compose, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import reducer from './redux/reducer/reducer';
-import thunk from 'redux-thunk';
+import { createStore, compose, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import thunk from "redux-thunk";
+import rootReducer from "./redux/reducer/reducer";
+import { store } from './redux/reducer/weather-reducer';
 
-const saga = createSagaMiddleware();
+// const saga = createSagaMiddleware();
 
-const store = createStore(reducer, compose(
-  applyMiddleware(thunk, saga),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-));
+// const store = createStore(
+//   rootReducer,
+//   compose(
+//     applyMiddleware(thunk, saga),
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   )
+// );
 
 // saga.run(sagaWatcher);
 
@@ -24,7 +28,7 @@ ReactDOM.render(
     {/* <React.StrictMode> */}
     <Provider store={store}>
       <App />
-      </Provider>
+    </Provider>
     {/* </React.StrictMode> */}
   </BrowserRouter>,
   document.getElementById("root")

@@ -5,3 +5,14 @@ export const Wrap = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const Weather = styled.div`
+  border: 1px solid #000;
+  border-radius: 5px;
+`;
+
+export const City = styled.p``;
+
+export const Delete = styled.div`
+  cursor: pointer;
+`;
